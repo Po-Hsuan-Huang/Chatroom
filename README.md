@@ -35,7 +35,7 @@ The Multi-Agent Chatroom is an innovative platform designed to facilitate the ex
     ```
 
 3. **Download the LLaMA 3 Model**:
-    - Ensure you have the LLaMA 3 model files in the `model/` directory. For detailed instructions, refer to [llma3_1.md](./model/llma3_1.md).
+    - Ensure you have the LLaMA 3 model files in the `model/` directory. For detailed instructions, refer to [llma3_1.md](./llma3_1.md).
 
 4. **Run the Application**:
     ```bash
