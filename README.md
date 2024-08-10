@@ -35,7 +35,7 @@ The Multi-Agent Chatroom is an innovative platform designed to facilitate the ex
     ```
 
 3. **Download the LLaMA 3 Model**:
-    - Ensure you have the LLaMA 3 model files in the `model/` directory.
+    - Ensure you have the LLaMA 3 model files in the `model/` directory. For detailed instructions, refer to [llma3_1.md](./model/llma3_1.md).
 
 4. **Run the Application**:
     ```bash
@@ -62,6 +62,10 @@ The Multi-Agent Chatroom is an innovative platform designed to facilitate the ex
 ## Exploring Social Dynamics
 
 - The project allows users to explore how different settings affect social interactions. Adjust the agents' emotional and cognitive intelligence to see how they cooperate and interact in various scenarios.
+
+## Models
+
+The models used in this project are sourced from [Meta Llama](https://github.com/meta-llama/llama-models/tree/main/models/llama3_1).
 
 ## Contributing
 

@@ -3,10 +3,16 @@ from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 import random
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///chatroom.db'
 db = SQLAlchemy(app)
+
+# Load the tokenizer and model
+tokenizer = AutoTokenizer.from_pretrained("path/to/llama3")
+model = AutoModelForCausalLM.from_pretrained("path/to/llama3")
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -89,6 +95,23 @@ def login():
     if user and user.check_password(data['password']):
         return jsonify({'status': 'success'}), 200
     return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 400
+
+@app.route('/generate', methods=['POST'])
+def generate():
+    data = request.json
+    prompt = data.get('prompt', '')
+
+    # Tokenize the input prompt
+    inputs = tokenizer(prompt, return_tensors='pt')
+
+    # Generate text
+    with torch.no_grad():
+        outputs = model.generate(inputs['input_ids'], max_length=100)
+
+    # Decode the generated text
+    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+
+    return jsonify({'generated_text': generated_text})
 
 if __name__ == '__main__':
     with app.app_context():
