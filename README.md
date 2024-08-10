@@ -25,7 +25,7 @@ The Multi-Agent Chatroom is an innovative platform designed to facilitate the ex
 
 1. **Clone the Repository**:
     ```bash
-    git clone https://github.com/YOUR_GITHUB_USERNAME/YOUR_REPOSITORY_NAME.git
+    git clone https://github.com/Po-Hsuan-Huang/Chatroom
     cd YOUR_REPOSITORY_NAME
     ```
 
