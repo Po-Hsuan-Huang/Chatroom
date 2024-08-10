@@ -27,7 +27,15 @@ def generate():
             outputs = model.generate(inputs['input_ids'], max_length=100, temperature=temperature)
         generated_texts[agent] = tokenizer.decode(outputs[0], skip_special_tokens=True)
 
-    return jsonify({'generated_text': generated_texts})
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.json
+    user = User.query.filter_by(username=data['username']).first()
+    if user and user.check_password(data['password']):
+        return jsonify({'status': 'success'}), 200
+    return jsonify({'status': 'error', 'message': 'Invalid username or password'}), 400
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
